@@ -11,6 +11,7 @@ public class Util {
 	
 	static SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 	static NumberFormat nf = new DecimalFormat("R$ #,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
+	static NumberFormat tf = new DecimalFormat("R$ #,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
 
 	
 	public static void pausar(int segundos) {
@@ -23,6 +24,10 @@ public class Util {
 	
 	public static String doubleParaString(Double valor) {
 		return Util.nf.format(valor);
+	}
+	
+	public static String phoneNumberFormat(String number) {
+		return number = number.replaceFirst("(\\d{2})(\\d{1})(\\d{4})(\\d+)", "($1) $2 $3-$4");
 	}
 	
 	
