@@ -10,6 +10,15 @@ public class Produto {
 	private Double valor;
 	private Double porcentagemLucro;
 	private int qtdEstoque;
+	private int qtdComprada;
+
+	public int getQtdComprada() {
+		return qtdComprada;
+	}
+
+	public void setQtdComprada(int qtdComprada) {
+		this.qtdComprada = qtdComprada;
+	}
 
 	public Produto(String nome, String descricao, Double valor, Double porcentagemLucro, int qtdEstoque) {
 		this.id = Produto.aux;
@@ -18,7 +27,9 @@ public class Produto {
 		this.valor = valor;
 		this.porcentagemLucro = porcentagemLucro;
 		this.qtdEstoque = qtdEstoque;
+		this.qtdComprada = 0;
 		this.aux++;
+
 	}
 
 	public int getId() {
@@ -65,10 +76,15 @@ public class Produto {
 		this.qtdEstoque = qtdEstoque;
 	}
 
+	public void printProdutoVendido() {
+		System.out.println("\nID: " + this.getId() + "\nNome: " + this.getNome() + "\nDescriçao: " + this.getDescricao()
+				+ "\nValor: " + Util.doubleParaString(this.getValor()) + "\nQtd vendida: " + this.getQtdComprada());
+	}
+
 	public String toString() {
-		return "\nID: " + this.getId() + "\nNome: " + this.getNome() + "\nNome: " + this.getDescricao() + "\nValor: "
-				+ Util.doubleParaString(this.getValor()) + "\nPorcentagem de Lucro: " + this.getPorcentagemLucro() +"%"
-				+ "\nQtd em Estoque: " + this.getQtdEstoque();
+		return "\nID: " + this.getId() + "\nNome: " + this.getNome() + "\nDescrição: " + this.getDescricao()
+				+ "\nValor: " + Util.doubleParaString(this.getValor()) + "\nPorcentagem de Lucro: "
+				+ this.getPorcentagemLucro() + "%" + "\nQtd em Estoque: " + this.getQtdEstoque();
 
 	}
 
