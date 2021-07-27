@@ -9,13 +9,15 @@ import helper.Util;
 
 import models.Cliente;
 import models.Produto;
+import models.Venda;
 
 public class Main {
 
 	private static Scanner ler = new Scanner(System.in);
 	private static ArrayList<Produto> produtos;
 	private static ArrayList<Cliente> clientes;
-
+	private static ArrayList<Venda> vendas;
+	
 	public static void main(String[] args) {
 
 		produtos = new ArrayList<Produto>();
@@ -26,20 +28,31 @@ public class Main {
 		produtos.add(new Produto("Gravata", "Borboleta", 25.99, 5.0, 0));
 		produtos.add(new Produto("Camisa esportiva", "Nike Dry fit", 49.99, 4.0, 44));
 		produtos.add(new Produto("Camisa esportiva", "Nba Jersey Lebron James", 249.99, 6.7, 23));
-		produtos.add(new Produto("Prancha de surf", "Edição Gabriel Medina", 419.99, 9.0, 7));
+		Produto p1= new Produto("Prancha de surf", "Edição Gabriel Medina", 419.99, 9.0, 7);
+		produtos.add(p1);
 		produtos.add(new Produto("Luva de goleiro", "Proteção total edião taffarel", 19.99, 5.0, 12));
-		produtos.add(new Produto("Bola de volei", "Mikasa", 195.99, 12.0, 2));
+		Produto p2 = new Produto("Bola de volei", "Mikasa", 195.99, 12.0, 2);
+		produtos.add(p2);
 		clientes = new ArrayList<Cliente>();
 		clientes.add(new Cliente("Joao", "Rua 22", "61923457654"));
 		clientes.add(new Cliente("Victor", "Rua 22 bloco 65", "11923867054"));
-		clientes.add(new Cliente("Gabriel Medina", "Tokyo 2020", "61921158854"));
+		Cliente c1 = new Cliente("Gabriel Medina", "Tokyo 2020", "61921158854");
+		clientes.add(c1);
 		clientes.add(new Cliente("Pablo Escobar", "Desconhecido", "64987657654"));
 		clientes.add(new Cliente("Ash Ketchum", "Cidade de pallet", "81923757987"));
-		clientes.add(new Cliente("Ikker Cassillas", "Espanha,Rua 1, casa 68", "55108530108"));
+		Cliente c2 = new Cliente("Ikker Cassillas", "Espanha,Rua 1, casa 68", "55108530108");
+		clientes.add(c2);
 		clientes.add(new Cliente("Kelvin Hofler", "Tokyo 2020", "61923456532"));
 		clientes.add(new Cliente("Aloy", "Horizon,bloco 890, casa 16", "61998757654"));
 		clientes.add(new Cliente("Jonas", "Rua 22 bloco 54", "11934576540"));
 		clientes.add(new Cliente("Neymar", "Paris,Rua 10, casa 6", "55101010108"));
+		
+		vendas= new ArrayList<Venda>();
+		vendas.add(new Venda(p1,c1,10));
+		vendas.add(new Venda(p2,c1,7));
+		vendas.add(new Venda(p1,c2,5));
+		vendas.add(new Venda(p1,c1,4));
+		vendas.add(new Venda(p2,c2,14));
 		Main.menu();
 
 	}
@@ -56,7 +69,8 @@ public class Main {
 		System.out.println("5- Cadastro de venda ");
 		System.out.println("6- Mostrar produtos em estoque ");
 		System.out.println("7- Listar todos os clientes ");
-		System.out.println("8- Sair do sistema ");
+		System.out.println("8- Listar todas as vendas ");
+		System.out.println("9- Sair do sistema ");
 
 		int opcao = 0;
 		try {
@@ -93,6 +107,9 @@ public class Main {
 			Main.listarClientes();
 			break;
 		case 8:
+			Main.printVendas();
+			break;
+		case 9:
 			System.out.println("Volte sempre!!");
 			Util.pausar(2);
 			System.exit(0);
@@ -439,9 +456,11 @@ public class Main {
 		System.out.println("\nDigite a quantidade vendida do produto");
 		int qtdVendida = Main.ler.nextInt();
 		ler.nextLine();
-		produto.get().setQtdComprada(qtdVendida);
+		Venda venda = new Venda(produto.get(), cliente, qtdVendida);
+		
 
-		cliente.AddCompra(produto.get());
+		Main.vendas.add(venda);
+		
 		System.out.println("O produto vendido : " + produto.get().getNome() + " foi cadastrado com sucesso");
 		System.out.println("Você deseja sair?");
 		System.out.println("1- Sim");
@@ -450,9 +469,7 @@ public class Main {
 		int Aux = Main.ler.nextInt();
 		ler.nextLine();
 
-		if (Aux == 1) {
-			System.out.println("Voce cadastrou:");
-			cliente.printVendas();
+		if (Aux == 1) {		
 			Util.pausar(2);
 			Main.menu();
 		} else if (Aux == 2) {
@@ -462,6 +479,13 @@ public class Main {
 			Util.pausar(2);
 			Main.menu();
 		}
+	}
+	private static void printVendas() {
+		for(Venda v : Main.vendas) {
+			System.out.println(v);
+		}
+		Util.pausar(2);
+		Main.menu();
 	}
 
 }
