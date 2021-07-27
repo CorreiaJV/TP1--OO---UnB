@@ -34,8 +34,8 @@ public class Venda {
 		this.qtdVendida = qtdVendida;
 	}
 	public String toString() {
-		return "\nCliente: " + "ID: "+ this.cliente.getID() + " Nome: " + this.cliente.getNome() + "\nProduto: "+ "ID: "+ this.produto.getId() +  this.produto.getNome() 
-				+ "\nQuantidade vendida " + this.getQtdVendida();
+		return "\nCliente: " + "ID: "+ this.cliente.getID() + " Nome: " + this.cliente.getNome() + "\nProduto: "+ "ID: "+ this.produto.getId()+" " +  this.produto.getNome() 
+				+ "\nQuantidade vendida: " + this.getQtdVendida();
 
 	}
 	

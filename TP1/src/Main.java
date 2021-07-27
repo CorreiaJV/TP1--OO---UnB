@@ -105,6 +105,7 @@ public class Main {
 			break;
 		case 7:
 			Main.listarClientes();
+			Main.menu();
 			break;
 		case 8:
 			Main.printVendas();
@@ -202,7 +203,7 @@ public class Main {
 
 				System.out.println(p);
 				System.out.println();
-
+				
 			}
 		} else {
 			System.out.println("Ainda não existem produtos cadastrados");
